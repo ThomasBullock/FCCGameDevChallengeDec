@@ -2,7 +2,12 @@ var Platformer = Platformer || {};
 
 Platformer.GameState = {
     create: function() {
-        // enable Arcade Physics System
+
+//        function render() { // setup Debug - call renderGroup on each of the alive members      		     
+//		 	    this.group.forEachAlive(renderGroup, this);
+//		    }function renderGroup(member) {    
+//          this.game.debug.body(member);
+//        }
 
         
         // make background
@@ -48,23 +53,47 @@ Platformer.GameState = {
 //        this.player.body.gravity.y = 600;
         this.player.body.collideWorldBounds = true;
         this.player.scale.setTo(1);
+        this.player.anchor.setTo(0.5);
+        this.player.body.setSize(34, 60, 11, 5);  // adjust the body of the sprite
+        this.player.animations.add('shooting', [0, 1, 2, 1], 10, false);
+        this.player.animations.add('walking', [3, 0, 4, 0], 10, false);
     
     
     },
+//    render: function() { // allows us to see the body of objects
+//      this.game.debug.body(this.player);
+//    },  
+  
     update: function() {
         this.game.physics.arcade.collide(this.player, this.platforms);
         
         this.player.body.velocity.x = 0;
-        
+
+        if(!this.player.body.touching.down) {
+          this.player.frame = 2;
+        }
+         
+          
         if(this.game.cursors.right.isDown){
-            this.player.body.velocity.x = 300;
+            this.player.scale.setTo(-1, 1);
+            this.player.body.velocity.x = 250;
+            this.player.play('walking');
         } else if (this.game.cursors.left.isDown) {
-            this.player.body.velocity.x = -300;
+            this.player.scale.setTo(1);
+            this.player.play('walking');          
+            this.player.body.velocity.x = -250;
         }
         
         if(this.game.cursors.up.isDown && this.player.body.touching.down) {
             this.player.body.velocity.y = -600;
         }
+      
+        if(this.game.spaceKey.isDown) {
+          this.shoot();
+        }
         
-    }
+    },
+  shoot: function() {
+    this.player.play('shooting');
+  }
 }

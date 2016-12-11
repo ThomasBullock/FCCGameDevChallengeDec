@@ -2,7 +2,7 @@ var Platformer = Platformer || {};
 
 Platformer.PreloadState = {   
     preload: function(){
-        this.load.image('player', 'assets/img/player.png');
+        this.load.spritesheet('player', 'assets/img/player-spritesheet.png', 60, 70, 5);
         this.load.image('platform', 'assets/img/platform.png');
         this.load.image('sky', 'assets/img/sky.png');
 			

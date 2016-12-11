@@ -10,7 +10,8 @@ var Platformer = Platformer || {};
 
 
             // add cursors
-            this.game.cursors = this.game.input.keyboard.createCursorKeys();            
+            this.game.cursors = this.game.input.keyboard.createCursorKeys();
+            this.game.spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
         },
         create: function() {
             Platformer.game.state.start('PreloadState');    
