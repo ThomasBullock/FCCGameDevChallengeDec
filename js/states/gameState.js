@@ -58,7 +58,21 @@ Platformer.GameState = {
         this.player.animations.add('shooting', [0, 1, 2, 1], 10, false);
         this.player.animations.add('walking', [3, 0, 4, 0], 10, false);
     
-    
+        this.enemies = this.add.group();
+        this.levelData.enemyData.forEach(function(item){
+          console.log(item);
+          var enemy = new Platformer.Enemy(this.game, item.x, item.y, 'redEnemy');
+          this.enemies.add(enemy);
+        }, this)
+        this.enemies.enableBody = true;
+        this.game.physics.arcade.enable(this.enemies);      
+        //        this.game.physics.arcade.enable(this.enemies);
+//        this.enemies.body.allowGravity = true;
+//      
+//        console.log(this.enemies);
+//        var enemy = new Platformer.Enemy(200, 200, 'redEnemy', 10, []);
+//        this.game.add.existing(enemy);
+//   
     },
 //    render: function() { // allows us to see the body of objects
 //      this.game.debug.body(this.player);
@@ -66,6 +80,7 @@ Platformer.GameState = {
   
     update: function() {
         this.game.physics.arcade.collide(this.player, this.platforms);
+        this.game.physics.arcade.collide(this.enemies, this.platforms);      
         
         this.player.body.velocity.x = 0;
 
