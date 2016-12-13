@@ -48,6 +48,7 @@ Platformer.GameState = {
         this.player.body.setSize(34, 60, 11, 5);  // adjust the body of the sprite
         this.player.animations.add('shooting', [0, 1, 2, 1], 10, false);
         this.player.animations.add('walking', [3, 0, 4, 0], 10, false);
+        this.player.direction = 'right';
         
         // make enemies
         this.enemies = this.add.group();
@@ -59,9 +60,17 @@ Platformer.GameState = {
         this.enemies.enableBody = true;
         this.game.physics.arcade.enable(this.enemies);
 
+        // make bubbles
+        this.bubbles = this.add.group();
+        this.bubbles.enableBody = true;
+        this.bubbles.createMultiple(100, 'bubble');
+        this.bubbles.setAll('body.allowGravity', false);
+        this.bubbles.callAll('events.onOutOfBounds.add', 'events.onOutOfBounds', this.resetBubble);
+        this.bubbles.callAll('anchor.setTo', 'anchor', 0.5,0.5);
+        this.bubbles.callAll('checkWorldBounds', true);
+
         // add spacekey event
-        this.game.spaceKey.onDown.add(this.restart, this);
-    
+        this.game.spaceKey.onDown.add(this.shootBubble, this);
     },
 //    render: function() { // allows us to see the body of objects
 //      this.game.debug.body(this.player);
@@ -81,25 +90,36 @@ Platformer.GameState = {
             this.player.scale.setTo(-1, 1);
             this.player.body.velocity.x = 250;
             this.player.play('walking');
+            this.player.direction = 'right';
         } else if (this.game.cursors.left.isDown) {
             this.player.scale.setTo(1);
             this.player.play('walking');          
             this.player.body.velocity.x = -250;
+            this.player.direction = 'left';
         }
         
         if(this.game.cursors.up.isDown && this.player.body.touching.down) {
             this.player.body.velocity.y = -600;
         }
-      
-        if(this.game.spaceKey.isDown) {
-          this.shoot();
-        }
+        
         
     },
-  shoot: function() {
-    this.player.play('shooting');
-  },
   restart: function() {
       this.game.state.start('GameState');
+  },
+  shootBubble: function() {
+      // animate player when shooting
+      this.player.play('shooting');
+
+      // display a bubble at player position
+      // bubble's direction depends on player's direction
+      var bubble = this.bubbles.getFirstExists(false);
+      if(bubble) {
+          bubble.reset(this.player.x, this.player.y + 8);
+          bubble.body.velocity.x = this.player.direction === 'right' ? 750: -750;
+      }
+  },
+  resetBubble: function(bubble) {
+      bubble.kill();
   }
 }
