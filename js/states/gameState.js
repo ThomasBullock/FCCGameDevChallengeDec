@@ -15,15 +15,15 @@ Platformer.GameState = {
 
 //    		game.load.text('level', 'assets/data/level-1.json'); 			
 				//parse the file
-				this.levelData = JSON.parse(this.game.cache.getText('level'));
+		this.levelData = JSON.parse(this.game.cache.getText('level'));
 
-				console.log(this.levelData);			
+		console.log(this.levelData);			
 			
         // make platforms group
         this.platforms = this.add.group();
         this.platforms.enableBody = true;
     
-
+        // add platforms
         this.levelData.platformData.forEach(function(element){
             this.platforms.create(element.x, element.y, 'platform');
         }, this);
@@ -38,26 +38,17 @@ Platformer.GameState = {
         this.ground.body.immovable = true;
         this.ground.scale.setTo(2,2);
         
-        // make ledges
-//        this.ledge = this.platforms.create(400,400, 'platform');
-//        this.ledge.body.immovable = true;
-//        this.ledge = this.platforms.create(-150, 250, 'platform');
-//        this.ledge.body.immovable = true;
-//        this.ledge = this.platforms.create(400, 100, 'platform');
-//        this.ledge.body.immovable = true;
         
         // make player
-        this.player  = this.add.sprite(this.levelData.playerStart.x, this.levelData.playerStart.y, 'player');
-//        this.player  = this.add.sprite(0, 0, 'player');        
+        this.player  = this.add.sprite(this.levelData.playerStart.x, this.levelData.playerStart.y, 'player');       
         this.game.physics.arcade.enable(this.player);
-//        this.player.body.gravity.y = 600;
         this.player.body.collideWorldBounds = true;
         this.player.scale.setTo(1);
         this.player.anchor.setTo(0.5);
         this.player.body.setSize(34, 60, 11, 5);  // adjust the body of the sprite
         this.player.animations.add('shooting', [0, 1, 2, 1], 10, false);
         this.player.animations.add('walking', [3, 0, 4, 0], 10, false);
-    
+      
         this.enemies = this.add.group();
         this.levelData.enemyData.forEach(function(item){
           console.log(item);
@@ -65,14 +56,8 @@ Platformer.GameState = {
           this.enemies.add(enemy);
         }, this)
         this.enemies.enableBody = true;
-        this.game.physics.arcade.enable(this.enemies);      
-        //        this.game.physics.arcade.enable(this.enemies);
-//        this.enemies.body.allowGravity = true;
-//      
-//        console.log(this.enemies);
-//        var enemy = new Platformer.Enemy(200, 200, 'redEnemy', 10, []);
-//        this.game.add.existing(enemy);
-//   
+        this.game.physics.arcade.enable(this.enemies);  
+    
     },
 //    render: function() { // allows us to see the body of objects
 //      this.game.debug.body(this.player);
@@ -87,8 +72,7 @@ Platformer.GameState = {
         if(!this.player.body.touching.down) {
           this.player.frame = 2;
         }
-         
-          
+                  
         if(this.game.cursors.right.isDown){
             this.player.scale.setTo(-1, 1);
             this.player.body.velocity.x = 250;
