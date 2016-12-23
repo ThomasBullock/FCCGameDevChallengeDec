@@ -53,11 +53,12 @@ Platformer.GameState = {
         // make enemies
         this.enemies = this.add.group();
         this.levelData.enemyData.forEach(function(item){
-          console.log(item);
-          var enemy = new Platformer.Enemy(this.game, item.x, item.y, 'redEnemy');
+//          console.log(item);
+          var enemy = new Platformer.Enemy(this.game, item.x, item.y, item.boundary, 'redEnemy');
           this.enemies.add(enemy);
         }, this)
-        this.enemies.enableBody = true;
+//        this.enemies.enableBody = true;
+//				this.enemies.body.velocity.x = 200;
         this.game.physics.arcade.enable(this.enemies);
 
         // make bubbles
@@ -72,9 +73,10 @@ Platformer.GameState = {
         // add spacekey event
         this.game.spaceKey.onDown.add(this.shootBubble, this);
     },
-//    render: function() { // allows us to see the body of objects
+   render: function() { // allows us to see the body of objects
 //      this.game.debug.body(this.player);
-//    },  
+        this.game.debug.bodyInfo(this.player, 0, 20);
+   },  
   
     update: function() {
         this.game.physics.arcade.collide(this.player, this.platforms);
