@@ -1,13 +1,22 @@
 var Platformer = Platformer || {};
 
-Platformer.Enemy = function(game, x, y, type, health, enemyBullets) {
+Platformer.Enemy = function(game, x, y, boundary, type, health, enemyBullets) {
   Phaser.Sprite.call(this, game, x, y, type);
   
 //  this.game = game;
 
   this.animations.add('walk', [0, 1], 10, true);
-//  this.enableBody = true;
+  this.enableBody = true;
+  this.game.physics.arcade.enable(this);	
   this.anchor.setTo(0.5);
+//	this.leftLimit = boundary.left;
+//	this.rightLimit = boundary.right;
+//	this.enableBody = true;
+	this.body.velocity.x = -100;
+	
+//  	//custom properties
+//  	this.pet.customParams = {health: 100, fun: 100};
+	this.customParams = {leftLimit: boundary.left, rightLimit: boundary.right, direction: -1};
   this.health = health;
   console.log(this)
 
@@ -16,3 +25,14 @@ Platformer.Enemy = function(game, x, y, type, health, enemyBullets) {
 
 Platformer.Enemy.prototype = Object.create(Phaser.Sprite.prototype);  // create an object that is the same as sprite prototype
 Platformer.Enemy.prototype.constructor = Platformer.Enemy; // when a new object is created Platformer.Enemy is called
+
+Platformer.Enemy.prototype.update = function() {
+	if(this.x < this.customParams.leftLimit) {
+		this.x = this.customParams.leftLimit+2;
+		this.body.velocity.x *= -1;
+	}
+	if (this.x > this.customParams.rightLimit) {
+		this.x = this.customParams.rightLimit-2;
+		this.body.velocity.x *= -1;
+	}
+}
