@@ -11,7 +11,7 @@ Platformer.GameState = {
 
         
         // make background
-        this.sky = this.add.sprite(0, 0, 'sky');
+        this.background = this.add.sprite(0, 0, 'sunrise');
 
 //    		game.load.text('level', 'assets/data/level-1.json'); 			
 				//parse the file
@@ -118,7 +118,7 @@ Platformer.GameState = {
       var bubble = this.bubbles.getFirstExists(false);
       if(bubble) {
           bubble.reset(this.player.x, this.player.y + 8);
-          bubble.body.velocity.x = this.player.direction === 'right' ? 750: -750;
+          bubble.body.velocity.x = this.player.direction === 'right' ? 750 : -750;
       }
   },
   resetBubble: function(bubble) {
