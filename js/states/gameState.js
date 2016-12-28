@@ -80,7 +80,10 @@ Platformer.GameState = {
   
     update: function() {
         this.game.physics.arcade.collide(this.player, this.platforms);
-        this.game.physics.arcade.collide(this.enemies, this.platforms);      
+        this.game.physics.arcade.collide(this.enemies, this.platforms);
+
+        // check for collision between player and enemies
+        this.game.physics.arcade.overlap(this.player, this.enemies, this.playerAgainstEnemy, null, this);      
         
         this.player.body.velocity.x = 0;
 
@@ -123,5 +126,11 @@ Platformer.GameState = {
   },
   resetBubble: function(bubble) {
       bubble.kill();
+  },
+  playerAgainstEnemy: function(player) {
+      // make player disappear
+      player.kill();
+      // wait 2 seconds and restart level
+      this.game.time.events.add(Phaser.Timer.SECOND * 2, this.restart, this);
   }
 }
