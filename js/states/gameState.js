@@ -82,9 +82,12 @@ Platformer.GameState = {
         this.game.physics.arcade.collide(this.player, this.platforms);
         this.game.physics.arcade.collide(this.enemies, this.platforms);
 
-        // check for collision between player and enemies
+        // player touching enemies
         this.game.physics.arcade.overlap(this.player, this.enemies, this.playerAgainstEnemy, null, this);      
         
+        // bubble touching enemies
+        this.game.physics.arcade.overlap(this.bubbles, this.enemies, this.enemyAgainstBubble, null, this);
+
         this.player.body.velocity.x = 0;
 
         if(!this.player.body.touching.down) {
@@ -132,5 +135,9 @@ Platformer.GameState = {
       player.kill();
       // wait 2 seconds and restart level
       this.game.time.events.add(Phaser.Timer.SECOND * 2, this.restart, this);
+  },
+  enemyAgainstBubble: function(bubble, enemy) {
+      bubble.kill();
+      enemy.kill();
   }
 }
