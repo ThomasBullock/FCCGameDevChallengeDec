@@ -11,7 +11,7 @@ Platformer.GameState = {
 
         
         // make background
-        this.sky = this.add.sprite(0, 0, 'sky');
+        this.background = this.add.sprite(0, 0, 'sunrise');
 
 //    		game.load.text('level', 'assets/data/level-1.json'); 			
 				//parse the file
@@ -80,8 +80,14 @@ Platformer.GameState = {
   
     update: function() {
         this.game.physics.arcade.collide(this.player, this.platforms);
-        this.game.physics.arcade.collide(this.enemies, this.platforms);      
+        this.game.physics.arcade.collide(this.enemies, this.platforms);
+
+        // player touching enemies
+        this.game.physics.arcade.overlap(this.player, this.enemies, this.playerAgainstEnemy, null, this);      
         
+        // bubble touching enemies
+        this.game.physics.arcade.overlap(this.bubbles, this.enemies, this.enemyAgainstBubble, null, this);
+
         this.player.body.velocity.x = 0;
 
         if(!this.player.body.touching.down) {
@@ -118,10 +124,20 @@ Platformer.GameState = {
       var bubble = this.bubbles.getFirstExists(false);
       if(bubble) {
           bubble.reset(this.player.x, this.player.y + 8);
-          bubble.body.velocity.x = this.player.direction === 'right' ? 750: -750;
+          bubble.body.velocity.x = this.player.direction === 'right' ? 750 : -750;
       }
   },
   resetBubble: function(bubble) {
       bubble.kill();
+  },
+  playerAgainstEnemy: function(player) {
+      // make player disappear
+      player.kill();
+      // wait 2 seconds and restart level
+      this.game.time.events.add(Phaser.Timer.SECOND * 2, this.restart, this);
+  },
+  enemyAgainstBubble: function(bubble, enemy) {
+      bubble.kill();
+      enemy.kill();
   }
 }
