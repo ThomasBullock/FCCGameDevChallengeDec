@@ -1,0 +1,78 @@
+{
+	"1": {
+		"background": "sunrise",
+		"playerStart": {"x": 10, "y": 815},
+		"platformData": [
+				{"x": -30, "y": 210},		
+				{"x": 200, "y": 360},
+				{"x": 400, "y": 510},
+				{"x": -150, "y": 660},
+				{"x": 400, "y": 800}
+			],
+		"enemyData": [
+			{"x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
+			{"x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
+			{"x": 100, "y": 590, "boundary": {"left": 30, "right": 210}}
+
+
+		],
+		"goal": {"x": -10, "y": 150}
+	},
+	"2": {
+	"background": "midday",
+  "playerStart": {"x": 10, "y": 815},
+  "platformData": [
+			{"x": -30, "y": 210},		
+			{"x": 200, "y": 360},
+			{"x": 400, "y": 510},
+      {"x": 400, "y": 660},
+      {"x": -150, "y": 800}
+    ],
+  "enemyData": [
+    {"x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
+		{"x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
+		{"x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
+	
+		
+  ],
+  "goal": {"x": -10, "y": 150}
+},
+	"3": {
+	"background": "sunset",
+  "playerStart": {"x": 10, "y": 815},
+  "platformData": [
+			{"x": -30, "y": 210},		
+			{"x": 200, "y": 360},
+			{"x": 400, "y": 510},
+      {"x": 400, "y": 660},
+      {"x": -150, "y": 800}
+    ],
+  "enemyData": [
+    {"x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
+		{"x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
+		{"x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
+	
+		
+  ],
+  "goal": {"x": -10, "y": 150}
+},
+	"4": {
+	"background": "dusk",
+  "playerStart": {"x": 10, "y": 815},
+  "platformData": [
+			{"x": -30, "y": 210},		
+			{"x": 200, "y": 360},
+			{"x": 400, "y": 510},
+      {"x": 400, "y": 660},
+      {"x": -150, "y": 800}
+    ],
+  "enemyData": [
+    {"x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
+		{"x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
+		{"x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
+	
+		
+  ],
+  "goal": {"x": -10, "y": 150}
+}	
+}

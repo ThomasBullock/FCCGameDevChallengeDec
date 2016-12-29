@@ -8,11 +8,13 @@ var Platformer = Platformer || {};
             this.game.physics.arcade.gravity.y = 1000;
             
             // add world bounds
-            this.game.world.setBounds(0,0,800,600);
+            this.game.world.setBounds(0,0,800,1000);
             
             // add cursors
             this.game.cursors = this.game.input.keyboard.createCursorKeys();
             this.game.spaceKey = this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR);
+					
+						this.game.currentLevel = 1;
         },
         create: function() {
             Platformer.game.state.start('PreloadState');    
