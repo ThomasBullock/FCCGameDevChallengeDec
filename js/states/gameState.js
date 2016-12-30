@@ -8,9 +8,7 @@ Platformer.GameState = {
 //		    }function renderGroup(member) {    
 //          this.game.debug.body(member);
 //        }
-
-
-//    		game.load.text('level', 'assets/data/level-1.json'); 			
+		
 				//parse the file
 				this.levelData = JSON.parse(this.game.cache.getText('level'));
 
@@ -18,7 +16,7 @@ Platformer.GameState = {
         this.background = this.add.sprite(0, 0, this.levelData[this.game.currentLevel].background);
 				this.background.scale.setTo(1.59);
 			
-		console.log(this.levelData);			
+				console.log(this.levelData);			
 			
         // make platforms group
         this.platforms = this.add.group();
@@ -39,10 +37,10 @@ Platformer.GameState = {
         this.ground.body.immovable = true;
         this.ground.scale.setTo(2,2);
         
-				this.goal = this.add.sprite(this.levelData[this.game.currentLevel].goal.x, this.levelData[this.game.currentLevel].goal.y, 'purpleEnemy'); 
+				// make goal
+				this.goal = this.add.sprite(this.levelData[this.game.currentLevel].goal.x, this.levelData[this.game.currentLevel].goal.y, 'sundae'); 
         this.game.physics.arcade.enable(this.goal);
 				this.goal.body.allowGravity = false;
-//				this.goal.enableBody = true;
         
         // make player
         this.player  = this.add.sprite(this.levelData[this.game.currentLevel].playerStart.x, this.levelData[this.game.currentLevel].playerStart.y, 'player');       
@@ -59,12 +57,9 @@ Platformer.GameState = {
         // make enemies
         this.enemies = this.add.group();
         this.levelData[this.game.currentLevel].enemyData.forEach(function(item){
-//          console.log(item);
-          var enemy = new Platformer.Enemy(this.game, item.x, item.y, item.boundary, 'redEnemy');
+          var enemy = new Platformer.Enemy(this.game, item.x, item.y, item.boundary, item.type, 4);
           this.enemies.add(enemy);
-        }, this)
-//        this.enemies.enableBody = true;
-//				this.enemies.body.velocity.x = 200;
+        }, this);
         this.game.physics.arcade.enable(this.enemies);
 
         // make bubbles
@@ -81,7 +76,7 @@ Platformer.GameState = {
     },
    render: function() { // allows us to see the body of objects
 //      this.game.debug.body(this.player);
-//        this.game.debug.bodyInfo(this.player, 0, 20);
+//      this.game.debug.bodyInfo(this.player, 0, 20);
    },  
   
     update: function() {
@@ -147,7 +142,8 @@ Platformer.GameState = {
   },
   enemyAgainstBubble: function(bubble, enemy) {
       bubble.kill();
-      enemy.kill();
+//      enemy.kill();
+			enemy.damage(1);
   },
 	levelComplete: function() {
 		console.log(this.game.currentLevel + ' complete');

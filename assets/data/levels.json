@@ -10,13 +10,13 @@
 				{"x": 400, "y": 800}
 			],
 		"enemyData": [
-			{"x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
-			{"x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
-			{"x": 100, "y": 590, "boundary": {"left": 30, "right": 210}}
+			{"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
+			{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
+			{"type": "snail", "x": 100, "y": 590, "boundary": {"left": 30, "right": 210}}
 
 
 		],
-		"goal": {"x": -10, "y": 150}
+		"goal": {"x": 10, "y": 145}
 	},
 	"2": {
 	"background": "midday",
@@ -29,9 +29,9 @@
       {"x": -150, "y": 800}
     ],
   "enemyData": [
-    {"x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
-		{"x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
-		{"x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
+    {"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
+		{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
+		{"type": "snail", "x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
 	
 		
   ],
@@ -48,9 +48,9 @@
       {"x": -150, "y": 800}
     ],
   "enemyData": [
-    {"x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
-		{"x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
-		{"x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
+    {"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
+		{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
+		{"type": "snail", "x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
 	
 		
   ],
@@ -67,9 +67,9 @@
       {"x": -150, "y": 800}
     ],
   "enemyData": [
-    {"x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
-		{"x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
-		{"x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
+    {"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
+		{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
+		{"type": "snail", "x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
 	
 		
   ],

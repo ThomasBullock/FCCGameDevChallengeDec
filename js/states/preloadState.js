@@ -13,6 +13,8 @@ Platformer.PreloadState = {
         this.load.spritesheet('redEnemy', 'assets/img/tempRed.png', 64, 52, 2);
         this.load.spritesheet('purpleEnemy', 'assets/img/tempPurple.png', 64, 52, 2);
         this.load.image('pinkEnemy', 'assets/img/tempPink.png');
+				this.load.spritesheet('snail', 'assets/img/snail-spritesheet.png', 82, 72, 4);
+				this.load.image('sundae', 'assets/img/sundae.png');
 
         this.load.image('bubble', 'assets/img/water-bubble.png');
       
