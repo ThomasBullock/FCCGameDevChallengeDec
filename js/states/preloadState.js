@@ -15,6 +15,9 @@ Platformer.PreloadState = {
         this.load.image('pinkEnemy', 'assets/img/tempPink.png');
 				this.load.spritesheet('snail', 'assets/img/snail-spritesheet.png', 82, 72, 4);
 				this.load.image('sundae', 'assets/img/sundae.png');
+        this.load.image('platform-short', 'assets/img/platform-short.png');
+        this.load.image('platform-medium', 'assets/img/platform-medium.png');
+        this.load.image('platform-large', 'assets/img/platform-large.png')      
 
         this.load.image('bubble', 'assets/img/water-bubble.png');
       

@@ -24,18 +24,23 @@ Platformer.GameState = {
     
         // add platforms
         this.levelData[this.game.currentLevel].platformData.forEach(function(element){
-            this.platforms.create(element.x, element.y, 'platform');
+            this.platforms.create(element.x, element.y, element.size);
         }, this);
         this.game.physics.arcade.enable(this.platforms);
         this.platforms.setAll('body.allowGravity', false);
-        this.platforms.setAll('body.immovable', true);        
+        this.platforms.setAll('body.immovable', true);
+        this.platforms.forEach(function(platform){
+            console.log(platform);
+          platform.body.setSize(platform.width-24, 72, 12, 10);
+        })
 			
         // make a ground
-        this.ground = this.platforms.create(0, this.world.height-50, 'platform');
+        this.ground = this.platforms.create(-30, this.world.height-62, 'platform-large');
         this.game.physics.arcade.enable(this.ground);
         this.ground.body.allowGravity = false;        
         this.ground.body.immovable = true;
-        this.ground.scale.setTo(2,2);
+        this.ground.body.setSize(866, 72, 0, 10);
+//        this.ground.scale.setTo(2,2);
         
 				// make goal
 				this.goal = this.add.sprite(this.levelData[this.game.currentLevel].goal.x, this.levelData[this.game.currentLevel].goal.y, 'sundae'); 
@@ -76,6 +81,10 @@ Platformer.GameState = {
     },
    render: function() { // allows us to see the body of objects
 //      this.game.debug.body(this.player);
+//      this.game.debug.body(this.platforms);  
+//        this.platforms.forEach(function(platform) {
+//          this.game.debug.body(platform);
+//        }, this)
 //      this.game.debug.bodyInfo(this.player, 0, 20);
    },  
   
@@ -115,7 +124,7 @@ Platformer.GameState = {
         }
         
         
-    },
+  },
   restart: function() {
       this.game.state.start('GameState');
   },

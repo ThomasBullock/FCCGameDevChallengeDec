@@ -3,15 +3,15 @@
 		"background": "sunrise",
 		"playerStart": {"x": 10, "y": 815},
 		"platformData": [
-				{"x": -30, "y": 210},		
-				{"x": 200, "y": 360},
-				{"x": 400, "y": 510},
-				{"x": -150, "y": 660},
-				{"x": 400, "y": 800}
+				{"x": -110, "y": 200, "size": "platform-medium"},		
+				{"x": 220, "y": 350, "size": "platform-short"},
+				{"x": 440, "y": 520, "size": "platform-short"},
+				{"x": -120, "y": 660, "size": "platform-short"},
+				{"x": 440, "y": 790, "size": "platform-short"}
 			],
 		"enemyData": [
-			{"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
-			{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
+			{"type": "snail", "x": 50, "y": 160, "boundary": {"left": 70, "right": 290}},
+			{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 450, "right": 770}},	
 			{"type": "snail", "x": 100, "y": 590, "boundary": {"left": 30, "right": 210}}
 
 
@@ -22,14 +22,14 @@
 	"background": "midday",
   "playerStart": {"x": 10, "y": 815},
   "platformData": [
-			{"x": -30, "y": 210},		
-			{"x": 200, "y": 360},
-			{"x": 400, "y": 510},
-      {"x": 400, "y": 660},
-      {"x": -150, "y": 800}
+			{"x": -30, "y": 190, "size": "platform-short"},		
+			{"x": 200, "y": 350, "size": "platform-short" },
+			{"x": 460, "y": 520, "size": "platform-short"},
+      {"x": 440, "y": 680, "size": "platform-medium"},
+      {"x": -140, "y": 790, "size": "platform-short"}
     ],
   "enemyData": [
-    {"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
+    {"type": "snail", "x": 50, "y": 160, "boundary": {"left": 70, "right": 290}},
 		{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
 		{"type": "snail", "x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
 	
@@ -41,11 +41,11 @@
 	"background": "sunset",
   "playerStart": {"x": 10, "y": 815},
   "platformData": [
-			{"x": -30, "y": 210},		
-			{"x": 200, "y": 360},
-			{"x": 400, "y": 510},
-      {"x": 400, "y": 660},
-      {"x": -150, "y": 800}
+			{"x": -30, "y": 190, "size": "platform-short"},		
+			{"x": 200, "y": 350, "size": "platform-short"},
+			{"x": 440, "y": 510, "size": "platform-short"},
+      {"x": 460, "y": 660, "size": "platform-medium"},
+      {"x": -140, "y": 800, "size": "platform-short"}
     ],
   "enemyData": [
     {"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
@@ -60,11 +60,11 @@
 	"background": "dusk",
   "playerStart": {"x": 10, "y": 815},
   "platformData": [
-			{"x": -30, "y": 210},		
-			{"x": 200, "y": 360},
-			{"x": 400, "y": 510},
-      {"x": 400, "y": 660},
-      {"x": -150, "y": 800}
+			{"x": -30, "y": 190, "size": "platform-short"},		
+			{"x": 200, "y": 350, "size": "platform-short"},
+			{"x": 440, "y": 510, "size": "platform-short"},
+      {"x": 460, "y": 660, "size": "platform-medium"},
+      {"x": -140, "y": 800, "size": "platform-short"}
     ],
   "enemyData": [
     {"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
