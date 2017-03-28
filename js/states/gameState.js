@@ -53,13 +53,15 @@ Platformer.GameState = {
         this.player  = this.add.sprite(this.levelData[this.game.currentLevel].playerStart.x, this.levelData[this.game.currentLevel].playerStart.y, 'player');       
         this.game.physics.arcade.enable(this.player);
         this.player.body.collideWorldBounds = true;
+        this.player.health = 3;  
         this.player.scale.setTo(1);
         this.player.anchor.setTo(0.5);
         this.player.body.setSize(34, 60, 11, 5);  // adjust the body of the sprite
         this.player.animations.add('shooting', [0, 1, 2, 1], 10, false);
         this.player.animations.add('walking', [3, 0, 4, 0], 10, false);
         this.player.direction = 'right';
-			  this.game.camera.follow(this.player);  
+			  this.game.camera.follow(this.player); 
+
         
         // make enemies
         this.enemies = this.add.group();
@@ -81,22 +83,22 @@ Platformer.GameState = {
         // add spacekey event
         this.game.spaceKey.onDown.add(this.shootBubble, this);
     },
-   render: function() { // allows us to see the body of objects
-//      this.game.debug.body(this.player);
-//      this.game.debug.body(this.platforms);  
-//        this.platforms.forEach(function(platform) {
-//          this.game.debug.body(platform);
-//        }, this)
-//      this.game.debug.bodyInfo(this.player, 0, 20);
-   },  
+    render: function() { // allows us to see the body of objects
+       // this.game.debug.body(this.player);
+       // this.game.debug.body(this.platforms);  
+       //   this.platforms.forEach(function(platform) {
+       //     this.game.debug.body(platform);
+       //   }, this)
+       // this.game.debug.bodyInfo(this.player, 0, 20);
+    },  
   
     update: function() {
         this.game.physics.arcade.collide(this.player, this.platforms);
         this.game.physics.arcade.collide(this.enemies, this.platforms);
 
         // player touching enemies
-        this.game.physics.arcade.overlap(this.player, this.enemies, this.playerAgainstEnemy, null, this);      
-        
+        this.game.physics.arcade.overlap(this.player, this.enemies, this.playerAgainstEnemy, this.processCallback, this);      
+        // this.game.physics.arcade.collide(this.player, this.enemies, this.playerAgainstEnemy, this.processCallback, this);         
         // bubble touching enemies
         this.game.physics.arcade.overlap(this.bubbles, this.enemies, this.enemyAgainstBubble, null, this);
 			
@@ -147,10 +149,30 @@ Platformer.GameState = {
   },
   playerAgainstEnemy: function(player) {
       // make player disappear
-      player.kill();
+      console.log(player.health);
+      player.health--;
+      if(player.health === 0) {
+        player.kill();
+        this.game.time.events.add(Phaser.Timer.SECOND * 2, this.restart, this);        
+      }
+
       // wait 2 seconds and restart level
-      this.game.time.events.add(Phaser.Timer.SECOND * 2, this.restart, this);
+
   },
+
+  processCallback: function(player, baddy) {
+
+    console.log(baddy.body.velocity.x)
+    console.log(baddy.body.velocity.y)
+
+    player.body.velocity.x *= -1; 
+    player.body.velocity.y *= -1;  
+    baddy.body.velocity.x *= -1; 
+    baddy.body.velocity.y *= -1;  
+    return true;
+  },
+
+
   enemyAgainstBubble: function(bubble, enemy) {
       bubble.kill();
 //      enemy.kill();
