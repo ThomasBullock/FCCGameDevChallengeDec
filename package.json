@@ -1,0 +1,21 @@
+{
+  "name": "GameDev2017",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "python -m SimpleHTTPServer 8888",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasBullock/FCCGameDevChallengeDec.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ThomasBullock/FCCGameDevChallengeDec/issues"
+  },
+  "homepage": "https://github.com/ThomasBullock/FCCGameDevChallengeDec#readme"
+}
