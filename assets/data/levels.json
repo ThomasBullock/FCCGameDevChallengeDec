@@ -10,10 +10,9 @@
 				{"x": 440, "y": 790, "size": "platform-short"}
 			],
 		"enemyData": [
-			{"type": "snail", "x": 50, "y": 160, "boundary": {"left": 70, "right": 290}},
-			{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 450, "right": 770}},	
-			{"type": "snail", "x": 100, "y": 590, "boundary": {"left": 30, "right": 210}}
-
+			{"type": "snail", "x": 60, "y": 160, "boundary": {"min": 40, "max": 290}},
+			{"type": "mossie", "x": 400, "y": 800, "boundary": {"min": 500, "max": 900}},	
+			{"type": "snail", "x": 100, "y": 590, "boundary": {"min": 30, "max": 210}}
 
 		],
 		"goal": {"x": 10, "y": 145}
@@ -29,11 +28,9 @@
       {"x": -140, "y": 790, "size": "platform-short"}
     ],
   "enemyData": [
-    {"type": "snail", "x": 50, "y": 160, "boundary": {"left": 70, "right": 290}},
-		{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
-		{"type": "snail", "x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
-	
-		
+    {"type": "snail", "x": 50, "y": 160, "boundary": {"min": 70, "max": 290}},
+		{"type": "snail", "x": 750, "y": 470, "boundary": {"min": 430, "max": 770}},	
+		{"type": "snail", "x": 500, "y": 590, "boundary": {"min": 430, "max": 510}}		
   ],
   "goal": {"x": -10, "y": 150}
 },
@@ -43,14 +40,14 @@
   "platformData": [
 			{"x": -30, "y": 190, "size": "platform-short"},		
 			{"x": 200, "y": 350, "size": "platform-short"},
-			{"x": 440, "y": 510, "size": "platform-short"},
-      {"x": 460, "y": 660, "size": "platform-medium"},
+			{"x": 510, "y": 510, "size": "platform-short"},
+      {"x": 430, "y": 660, "size": "platform-medium"},
       {"x": -140, "y": 800, "size": "platform-short"}
     ],
   "enemyData": [
-    {"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
-		{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
-		{"type": "snail", "x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
+    {"type": "snail", "x": 50, "y": 170, "boundary": {"min": 70, "max": 290}},
+		{"type": "snail", "x": 750, "y": 470, "boundary": {"min": 420, "max": 770}},	
+		{"type": "snail", "x": 500, "y": 590, "boundary": {"min": 430, "max": 510}}
 	
 		
   ],
@@ -62,14 +59,14 @@
   "platformData": [
 			{"x": -30, "y": 190, "size": "platform-short"},		
 			{"x": 200, "y": 350, "size": "platform-short"},
-			{"x": 440, "y": 510, "size": "platform-short"},
+			{"x": 520, "y": 510, "size": "platform-short"},
       {"x": 460, "y": 660, "size": "platform-medium"},
       {"x": -140, "y": 800, "size": "platform-short"}
     ],
   "enemyData": [
-    {"type": "snail", "x": 50, "y": 170, "boundary": {"left": 70, "right": 290}},
-		{"type": "snail", "x": 750, "y": 470, "boundary": {"left": 430, "right": 770}},	
-		{"type": "snail", "x": 500, "y": 590, "boundary": {"left": 430, "right": 510}}
+    {"type": "snail", "x": 50, "y": 170, "boundary": {"min": 70, "max": 290}},
+		{"type": "snail", "x": 750, "y": 470, "boundary": {"min": 430, "max": 770}},	
+		{"type": "snail", "x": 500, "y": 590, "boundary": {"min": 430, "max": 510}}
 	
 		
   ],

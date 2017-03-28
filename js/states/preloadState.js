@@ -14,6 +14,7 @@ Platformer.PreloadState = {
         this.load.spritesheet('purpleEnemy', 'assets/img/tempPurple.png', 64, 52, 2);
         this.load.image('pinkEnemy', 'assets/img/tempPink.png');
 				this.load.spritesheet('snail', 'assets/img/snail-spritesheet.png', 82, 72, 4);
+				this.load.spritesheet('mossie', 'assets/img/mossie-spritesheet.png', 64, 51, 4);
 				this.load.image('sundae', 'assets/img/sundae.png');
         this.load.image('platform-short', 'assets/img/platform-short.png');
         this.load.image('platform-medium', 'assets/img/platform-medium.png');
@@ -23,6 +24,7 @@ Platformer.PreloadState = {
       
         // load level data
 				this.load.text('level', 'assets/data/levels.json'); 
+        this.load.text('enemyData', 'assets/data/enemyData.json'); 
     },
 
     create: function() {

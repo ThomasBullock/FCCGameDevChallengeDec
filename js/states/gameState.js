@@ -11,12 +11,14 @@ Platformer.GameState = {
 		
 				//parse the file
 				this.levelData = JSON.parse(this.game.cache.getText('level'));
+      
+        this.enemyData = JSON.parse(this.game.cache.getText('enemyData'));
 
 			  // make background from levelData
         this.background = this.add.sprite(0, 0, this.levelData[this.game.currentLevel].background);
 				this.background.scale.setTo(1.59);
 			
-				console.log(this.levelData);			
+				console.log(this.enemyData);			
 			
         // make platforms group
         this.platforms = this.add.group();
@@ -30,7 +32,7 @@ Platformer.GameState = {
         this.platforms.setAll('body.allowGravity', false);
         this.platforms.setAll('body.immovable', true);
         this.platforms.forEach(function(platform){
-            console.log(platform);
+//            console.log(platform);
           platform.body.setSize(platform.width-24, 72, 12, 10);
         })
 			

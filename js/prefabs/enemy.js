@@ -4,26 +4,43 @@ Platformer.Enemy = function(game, x, y, boundary, type, health, enemyBullets) {
   Phaser.Sprite.call(this, game, x, y, type);
   
 //  this.game = game;
-
-  this.animations.add('walk', [0, 1, 2, 1], 5, true);
-	this.animations.add('getHit', [3, 1], 5, false);
+//  this.enemyData = JSON.parse(this.game.cache.getText('enemy'));
+//  console.log(Platformer.GameState.enemyData[type]);
+  
+  var typeData = Platformer.GameState.enemyData[type];
+  
+//	console.log(type);
+  this.animations.add('walk', [0, 1, 2, 1], typeData.frameRate, true);
+	this.animations.add('getHit', [3, 1], typeData.frameRate, false);
 	
   this.enableBody = true;
-  this.game.physics.arcade.enable(this);	
+  
+  this.game.physics.arcade.enable(this);	    
+
+
   this.anchor.setTo(0.5);
 //	this.leftLimit = boundary.left;
 //	this.rightLimit = boundary.right;
 //	this.enableBody = true;
-	this.body.velocity.x = -50;
+
 
 	
 //  	//custom properties
 //  	this.pet.customParams = {health: 100, fun: 100};
-	this.customParams = {leftLimit: boundary.left, rightLimit: boundary.right, direction: -1};
-  this.health = health;
-  console.log(this)
-
+	this.customParams = {min: boundary.min, max: boundary.max, direction: -1};
+  this.axis = typeData.axis;
+  this.health = typeData.health;
+//  console.log(this)
+	this.body.velocity[this.axis] = typeData.speed;
+  
+  if(type === 'mossie') {
+    this.body.allowGravity = false;
+  }
+  
+  console.log(this.body.velocity);
+  
   this.play('walk');
+  console.log(this);
 };
 
 Platformer.Enemy.prototype = Object.create(Phaser.Sprite.prototype);  // create an object that is the same as sprite prototype
@@ -31,16 +48,33 @@ Platformer.Enemy.prototype.constructor = Platformer.Enemy; // when a new object 
 
 Platformer.Enemy.prototype.update = function() {
 
-	if(this.x < this.customParams.leftLimit) {
-		this.x = this.customParams.leftLimit+2;
-		this.body.velocity.x *= -1;
+	if(this[this.axis] < this.customParams.min) {
+		this[this.axis] = this.customParams.min+2;
+		this.body.velocity[this.axis] *= -1;
 		this.scale.setTo(-1, 1);
 	}
-	if (this.x > this.customParams.rightLimit) {
-		this.x = this.customParams.rightLimit-2;
-		this.body.velocity.x *= -1;
+	if(this[this.axis] > this.customParams.max) {
+		this[this.axis] = this.customParams.max-2;
+		this.body.velocity[this.axis] *= -1;
 		this.scale.setTo(1, 1);
 	}
+  
+//  if(this[this.axis] <= this.customParams.max ) {
+//
+//     this.body.velocity[this.axis] *= -1;
+//     this.scale.setTo(-1, 1);
+//     this[this.axis] = this.customParams.max
+//  }
+//  
+//  
+//  if(this[this.axis] >= this.customParams.min ) {
+//
+//     this.body.velocity[this.axis] *= -1;
+//     this.scale.setTo(1, 1);
+//     this[this.axis] = this.customParams.min
+//  }  
+  
+  
 }
 Platformer.Enemy.prototype.damage = function(amount) {
 	Phaser.Sprite.prototype.damage.call(this, amount);

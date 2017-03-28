@@ -1,0 +1,15 @@
+{
+  "snail": {
+    "frameRate": 5,
+    "health": 4,
+    "speed": -15,
+    "axis": "x"
+  },
+  
+  "mossie": {
+    "frameRate": 25,
+    "health": 2,
+    "speed": -45,
+    "axis": "y"     
+  }
+}
