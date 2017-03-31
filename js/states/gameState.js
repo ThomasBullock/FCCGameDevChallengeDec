@@ -9,6 +9,9 @@ Platformer.GameState = {
 //          this.game.debug.body(member);
 //        }
 		
+        this.game.customParams = {};
+        this.game.customParams.waspSpawn = false;
+        console.log(this.game.customParams)
 				//parse the file
 				this.levelData = JSON.parse(this.game.cache.getText('level'));
       
@@ -17,9 +20,7 @@ Platformer.GameState = {
 			  // make background from levelData
         this.background = this.add.sprite(0, 0, this.levelData[this.game.currentLevel].background);
 				this.background.scale.setTo(1.59);
-			
-				console.log(this.enemyData);			
-			
+							
         // make platforms group
         this.platforms = this.add.group();
         this.platforms.enableBody = true;
@@ -32,8 +33,7 @@ Platformer.GameState = {
         this.platforms.setAll('body.allowGravity', false);
         this.platforms.setAll('body.immovable', true);
         this.platforms.forEach(function(platform){
-//            console.log(platform);
-          platform.body.setSize(platform.width-24, 72, 12, 10);
+        platform.body.setSize(platform.width-24, 72, 12, 10);
         })
 			
         // make a ground
@@ -53,6 +53,8 @@ Platformer.GameState = {
         this.player  = this.add.sprite(this.levelData[this.game.currentLevel].playerStart.x, this.levelData[this.game.currentLevel].playerStart.y, 'player');       
         this.game.physics.arcade.enable(this.player);
         this.player.body.collideWorldBounds = true;
+        this.player.body.bounce.y = 0.3;
+        this.player.body.gravity.y = 30;
         this.player.health = 3;  
         this.player.scale.setTo(1);
         this.player.anchor.setTo(0.5);
@@ -85,6 +87,10 @@ Platformer.GameState = {
     },
     render: function() { // allows us to see the body of objects
        // this.game.debug.body(this.player);
+       // this.game.debug.body(this.enemies);  
+       //   this.enemies.forEach(function(enemy) {
+       //     this.game.debug.body(enemy);
+       //   }, this);
        // this.game.debug.body(this.platforms);  
        //   this.platforms.forEach(function(platform) {
        //     this.game.debug.body(platform);
@@ -93,6 +99,7 @@ Platformer.GameState = {
     },  
   
     update: function() {
+        // console.log(this.game.world.position);
         this.game.physics.arcade.collide(this.player, this.platforms);
         this.game.physics.arcade.collide(this.enemies, this.platforms);
 
@@ -126,8 +133,14 @@ Platformer.GameState = {
         if(this.game.cursors.up.isDown && this.player.body.touching.down) {
             this.player.body.velocity.y = -600;
         }
-        
-        
+        console.log(this.player);
+        if(this.game.customParams.waspSpawn === false && this.game.world.position.y === -30) {
+          console.log('Wasps!!');         
+          var wasp = new Platformer.Wasp(this.game, 450, 10, 0, "mossie", 4, "wasp", this.player);
+          this.enemies.add(wasp)
+          this.game.customParams.waspSpawn = true;
+
+        }      
   },
   restart: function() {
       this.game.state.start('GameState');
@@ -149,7 +162,7 @@ Platformer.GameState = {
   },
   playerAgainstEnemy: function(player) {
       // make player disappear
-      console.log(player.health);
+      // console.log(player.health);
       player.health--;
       if(player.health === 0) {
         player.kill();
@@ -175,9 +188,9 @@ Platformer.GameState = {
 
   enemyAgainstBubble: function(bubble, enemy) {
       bubble.kill();
-//      enemy.kill();
 			enemy.damage(1);
   },
+
 	levelComplete: function() {
 		console.log(this.game.currentLevel + ' complete');
 		this.game.currentLevel++;
