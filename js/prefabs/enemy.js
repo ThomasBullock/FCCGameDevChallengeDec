@@ -13,12 +13,13 @@ Platformer.Enemy = function(game, x, y, boundary, type, health, enemyBullets) {
   this.animations.add('walk', [0, 1, 2, 1], typeData.frameRate, true);
 	this.animations.add('getHit', [3, 1], typeData.frameRate, false);
 	
-  this.enableBody = true;
-  
+  // this.enableBody = true;   //not needed???? 
+
   this.game.physics.arcade.enable(this);	    
 
 
   this.anchor.setTo(0.5);
+
 //	this.leftLimit = boundary.left;
 //	this.rightLimit = boundary.right;
 //	this.enableBody = true;
@@ -28,19 +29,19 @@ Platformer.Enemy = function(game, x, y, boundary, type, health, enemyBullets) {
 //  	//custom properties
 //  	this.pet.customParams = {health: 100, fun: 100};
 	this.customParams = {min: boundary.min, max: boundary.max, direction: -1};
+	console.log(this);
   this.axis = typeData.axis;
   this.health = typeData.health;
 //  console.log(this)
 	this.body.velocity[this.axis] = typeData.speed;
-  
   if(type === 'mossie') {
     this.body.allowGravity = false;
   }
   
-  console.log(this.body.velocity);
+  // console.log(this.body);
   
   this.play('walk');
-  console.log(this);
+  // console.log(this);
 };
 
 Platformer.Enemy.prototype = Object.create(Phaser.Sprite.prototype);  // create an object that is the same as sprite prototype
@@ -87,5 +88,6 @@ Platformer.Enemy.prototype.damage = function(amount) {
 	
 	if(this.health <= 0) {
 		this.kill();
+		this.destroy();
 	}
 }
