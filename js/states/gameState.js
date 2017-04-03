@@ -86,15 +86,15 @@ Platformer.GameState = {
         this.game.spaceKey.onDown.add(this.shootBubble, this);
     },
     render: function() { // allows us to see the body of objects
-       // this.game.debug.body(this.player);
-       // this.game.debug.body(this.enemies);  
-       //   this.enemies.forEach(function(enemy) {
-       //     this.game.debug.body(enemy);
-       //   }, this);
-       // this.game.debug.body(this.platforms);  
-       //   this.platforms.forEach(function(platform) {
-       //     this.game.debug.body(platform);
-       //   }, this)
+       this.game.debug.body(this.player);
+       this.game.debug.body(this.enemies);  
+         this.enemies.forEach(function(enemy) {
+           this.game.debug.body(enemy);
+         }, this);
+       this.game.debug.body(this.platforms);  
+         this.platforms.forEach(function(platform) {
+           this.game.debug.body(platform);
+         }, this)
        // this.game.debug.bodyInfo(this.player, 0, 20);
     },  
   
@@ -136,7 +136,7 @@ Platformer.GameState = {
         console.log(this.player);
         if(this.game.customParams.waspSpawn === false && this.game.world.position.y === -30) {
           console.log('Wasps!!');         
-          var wasp = new Platformer.Wasp(this.game, 450, 10, 0, "mossie", 4, "wasp", this.player);
+          var wasp = new Platformer.Wasp(this.game, 450, 10, 0, "wasp", 4, "wasp", this.player);
           this.enemies.add(wasp)
           this.game.customParams.waspSpawn = true;
 
@@ -175,8 +175,8 @@ Platformer.GameState = {
 
   processCallback: function(player, baddy) {
 
-    console.log(baddy.body.velocity.x)
-    console.log(baddy.body.velocity.y)
+    // console.log(baddy.body.velocity.x)
+    // console.log(baddy.body.velocity.y)
 
     player.body.velocity.x *= -1; 
     player.body.velocity.y *= -1;  
