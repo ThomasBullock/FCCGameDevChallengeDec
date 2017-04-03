@@ -86,15 +86,15 @@ Platformer.GameState = {
         this.game.spaceKey.onDown.add(this.shootBubble, this);
     },
     render: function() { // allows us to see the body of objects
-       this.game.debug.body(this.player);
-       this.game.debug.body(this.enemies);  
-         this.enemies.forEach(function(enemy) {
-           this.game.debug.body(enemy);
-         }, this);
-       this.game.debug.body(this.platforms);  
-         this.platforms.forEach(function(platform) {
-           this.game.debug.body(platform);
-         }, this)
+//        this.game.debug.body(this.player);
+//        this.game.debug.body(this.enemies);  
+//          this.enemies.forEach(function(enemy) {
+//            this.game.debug.body(enemy);
+//          }, this);
+//        this.game.debug.body(this.platforms);  
+//          this.platforms.forEach(function(platform) {
+//            this.game.debug.body(platform);
+//          }, this)
        // this.game.debug.bodyInfo(this.player, 0, 20);
     },  
   
