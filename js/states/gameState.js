@@ -133,7 +133,7 @@ Platformer.GameState = {
         if(this.game.cursors.up.isDown && this.player.body.touching.down) {
             this.player.body.velocity.y = -600;
         }
-        console.log(this.player);
+        // console.log(this.player);
         if(this.game.customParams.waspSpawn === false && this.game.world.position.y === -30) {
           console.log('Wasps!!');         
           var wasp = new Platformer.Wasp(this.game, 450, 10, 0, "wasp", 4, "wasp", this.player);
